@@ -66,7 +66,7 @@ function makeFieldName(name) {
     name = name.replace(/\W/g, '');
     if (/^\d/.test(name))
         name = 'P_' + name;
-    return {name:name, term:term};
+    return {name:name+"!", term:term};
 }
 
 // Normalizes suffixed Yahoo Finance numbers to numeric values.
@@ -133,9 +133,11 @@ if (keystatsquery.td.length() !== 0) {
             value = td_value.span.text().toString();
         }
         else{
-            value = parseNumber(value);
+            value = td_value.text().toString();
         }
-
+    
+         value = parseNumber(value);
+    
         // Append Value Pair to XML Structure
         if (terms && parm.term) {
             statsdata.appendChild(<{parm.name} term={parm.term}>{value}</{parm.name}>);
