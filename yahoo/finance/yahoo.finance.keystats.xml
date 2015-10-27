@@ -129,7 +129,7 @@ if (keystatsquery.td.length() !== 0) {
         var parm = makeFieldName(td_param_name.text().toString());
 
         // Process Value Information
-        if (typeOf(td_value.span) !== 'undefined'){
+        if (typeof(td_value.span) !== 'undefined'){
             value = td_value.span.text().toString();
         }
         else{
