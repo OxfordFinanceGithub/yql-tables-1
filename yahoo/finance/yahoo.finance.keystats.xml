@@ -116,7 +116,7 @@ var keystatsquery = query.results;
 
 // Process Results
 var statsdata = <stats symbol={symbol}></stats>;
-y.log('test');
+y.log("test");
 if (keystatsquery.td.length() !== 0) {
     var i = 0;
     while (i < keystatsquery.td.length())
