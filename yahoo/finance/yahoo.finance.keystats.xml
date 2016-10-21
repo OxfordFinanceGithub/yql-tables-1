@@ -110,13 +110,12 @@ function parseNumber(n, scale) {
 // Setup Query from finance.yahoo.com
 var terms = /^[tTyY]/.test(terms);
 var url="http://finance.yahoo.com/quote/" + symbol + "/key-statistics";
-var xpath = "//table[@class='table-qsp-stats Mt(10px)']/tbody//tr//td";
+var xpath = "//table[@class='table-qsp-stats Mt(10px)']/tbody//tr//td//span";
 var query = y.query("select * from html where url=@url and compat='html5' and xpath=@xpath", {url:url, xpath:xpath});
 var keystatsquery = query.results;
 
 // Process Results
 var statsdata = <stats symbol={symbol}></stats>;
-y.log("test");
 if (keystatsquery.td.length() !== 0) {
     var i = 0;
     while (i < keystatsquery.td.length())
