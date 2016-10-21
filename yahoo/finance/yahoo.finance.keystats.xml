@@ -116,6 +116,7 @@ var keystatsquery = query.results;
 
 // Process Results
 var statsdata = <stats symbol={symbol}></stats>;
+y.log('test');
 if (keystatsquery.td.length() !== 0) {
     var i = 0;
     while (i < keystatsquery.td.length())
@@ -126,7 +127,7 @@ if (keystatsquery.td.length() !== 0) {
         i += 2;
 
         // Process Parameter Name and any Associated Attributes (Timeframe, Stock Split Info)
-        var parm = makeFieldName(td_param_name.span.text().toString());
+        var parm = makeFieldName(td_param_name.span[0].text().toString());
 
         // Process Value Information
         if (td_value.hasOwnProperty('span')){
