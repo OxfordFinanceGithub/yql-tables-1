@@ -9,7 +9,7 @@
             Yahoo Finance - Key Statistics by Stock Symbol
         </description>
         <sampleQuery>
-            SELECT * FROM {table} WHERE symbol='T'
+            SELECT * FROM {table} WHERE symbol='AAPL'
         </sampleQuery>
     </meta>
     <bindings>
@@ -110,7 +110,7 @@ function parseNumber(n, scale) {
 // Setup Query from finance.yahoo.com
 var terms = /^[tTyY]/.test(terms);
 var url="http://finance.yahoo.com/q/ks?s=" + symbol;
-var xpath = "//table[@class='yfnc_datamodoutline1']//tr/td/table//tr/td[@class='yfnc_tabledata1' or @class='yfnc_tablehead1']";
+var xpath = "//table[@class='table-qsp-stats Mt(10px)']/tbody//tr//td";
 var query = y.query("select * from html where url=@url and compat='html5' and xpath=@xpath", {url:url, xpath:xpath});
 var keystatsquery = query.results;
 
@@ -126,7 +126,7 @@ if (keystatsquery.td.length() !== 0) {
         i += 2;
 
         // Process Parameter Name and any Associated Attributes (Timeframe, Stock Split Info)
-        var parm = makeFieldName(td_param_name.text().toString());
+        var parm = makeFieldName(td_param_name.span.text().toString());
 
         // Process Value Information
         if (td_value.hasOwnProperty('span')){
